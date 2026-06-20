@@ -6,6 +6,10 @@ import roomAcacia from "@/assets/room-acacia.jpg";
 import tourDrive from "@/assets/tour-drive.jpg";
 import tourBalloon from "@/assets/tour-balloon.jpg";
 import foodMshikaki from "@/assets/food-mshikaki.jpg";
+import facilitySpa from "@/assets/facility-spa.jpg";
+import facilityPool from "@/assets/facility-pool.jpg";
+import facilityDeck from "@/assets/facility-deck.jpg";
+import facilityBoma from "@/assets/facility-boma.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +52,7 @@ function Index() {
         </div>
         <nav className="hidden md:flex gap-7 text-xs font-medium uppercase tracking-widest">
           <a href="#rooms" className="hover:text-savannah transition-colors">Rooms</a>
+          <a href="#facilities" className="hover:text-savannah transition-colors">Facilities</a>
           <a href="#book" className="hover:text-savannah transition-colors">Book</a>
           <a href="#menu" className="hover:text-savannah transition-colors">Dining</a>
           <a href="#tours" className="hover:text-savannah transition-colors">Safaris</a>
@@ -135,7 +140,41 @@ function Index() {
         </div>
       </section>
 
-      {/* Booking Form */}
+      {/* Facilities / Attractions */}
+      <section id="facilities" className="bg-sand-100 px-6 py-20 scroll-mt-20">
+        <div className="mb-10 max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-display italic mb-2">Lodge Attractions</h2>
+          <p className="text-earth-900/60 text-sm">Spaces designed to bring the Serengeti even closer.</p>
+        </div>
+
+        <div className="max-w-5xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {FACILITIES.map((f) => (
+            <article key={f.name} className="bg-white rounded-2xl overflow-hidden border border-earth-900/5 flex flex-col group">
+              <img
+                src={f.img}
+                alt={f.alt}
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="w-full aspect-[4/5] object-cover bg-sand-100 transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="p-5 flex flex-col flex-1">
+                <h3 className="font-bold text-sm mb-1">{f.name}</h3>
+                <p className="text-xs text-earth-900/60 mb-4 flex-1">{f.desc}</p>
+                <a
+                  href={wa(`Hello, I am interested in the ${f.name}. Please share more details.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-center text-[10px] font-bold uppercase tracking-widest py-3 border border-earth-900/10 rounded-xl hover:bg-earth-900 hover:text-white transition-colors"
+                >
+                  Enquire
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section id="book" className="px-6 py-20 bg-earth-900 text-white scroll-mt-20">
         <div className="max-w-xl mx-auto">
           <span className="inline-block mb-3 px-2 py-1 bg-savannah text-white text-[10px] font-bold tracking-widest uppercase">
@@ -241,7 +280,7 @@ function Index() {
       <section id="gallery" className="px-6 py-20 bg-white scroll-mt-20">
         <h2 className="text-3xl md:text-4xl font-display italic mb-10">Gallery</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-5xl">
-          {[heroImg, roomSavannah, roomAcacia, tourDrive, tourBalloon, foodMshikaki].map(
+          {[heroImg, roomSavannah, roomAcacia, facilitySpa, facilityPool, tourDrive, facilityDeck, facilityBoma, tourBalloon, foodMshikaki].map(
             (src, i) => (
               <img
                 key={i}
@@ -368,6 +407,33 @@ const TOURS = [
     price: `${toPi(70)} / person`,
     img: tourDrive,
     alt: "Guided sundowner bush walk",
+  },
+];
+
+const FACILITIES = [
+  {
+    name: "Bush Spa & Wellness",
+    desc: "Open-air massages, herbal treatments and a calm deck overlooking the wild.",
+    img: facilitySpa,
+    alt: "Open-air safari lodge spa deck with savannah views",
+  },
+  {
+    name: "Infinity Pool",
+    desc: "Cool off in a pool that seems to merge into the endless Serengeti plains.",
+    img: facilityPool,
+    alt: "Infinity pool overlooking the Serengeti at sunset",
+  },
+  {
+    name: "Sundowner Deck",
+    desc: "An elevated timber deck to watch herds, sunsets and the big cats after dusk.",
+    img: facilityDeck,
+    alt: "Elevated safari lodge deck overlooking the savannah",
+  },
+  {
+    name: "Maasai Cultural Boma",
+    desc: "Experience Maasai song, beadwork and stories around a traditional fire circle.",
+    img: facilityBoma,
+    alt: "Traditional Maasai cultural boma at the lodge",
   },
 ];
 
