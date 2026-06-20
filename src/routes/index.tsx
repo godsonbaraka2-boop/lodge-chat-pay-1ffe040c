@@ -280,7 +280,7 @@ function Index() {
       <section id="gallery" className="px-6 py-20 bg-white scroll-mt-20">
         <h2 className="text-3xl md:text-4xl font-display italic mb-10">Gallery</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-5xl">
-          {[heroImg, roomSavannah, roomAcacia, tourDrive, tourBalloon, foodMshikaki].map(
+          {[heroImg, roomSavannah, roomAcacia, facilitySpa, facilityPool, tourDrive, facilityDeck, facilityBoma, tourBalloon, foodMshikaki].map(
             (src, i) => (
               <img
                 key={i}
