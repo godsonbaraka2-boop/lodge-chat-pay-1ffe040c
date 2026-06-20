@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState, type FormEvent } from "react";
 import heroImg from "@/assets/hero.jpg";
 import roomSavannah from "@/assets/room-savannah.jpg";
 import roomAcacia from "@/assets/room-acacia.jpg";
@@ -42,6 +43,7 @@ function Index() {
         </div>
         <nav className="hidden md:flex gap-7 text-xs font-medium uppercase tracking-widest">
           <a href="#rooms" className="hover:text-savannah transition-colors">Rooms</a>
+          <a href="#book" className="hover:text-savannah transition-colors">Book</a>
           <a href="#menu" className="hover:text-savannah transition-colors">Dining</a>
           <a href="#tours" className="hover:text-savannah transition-colors">Safaris</a>
           <a href="#gallery" className="hover:text-savannah transition-colors">Gallery</a>
@@ -125,8 +127,23 @@ function Index() {
         </div>
       </section>
 
+      {/* Booking Form */}
+      <section id="book" className="px-6 py-20 bg-earth-900 text-white scroll-mt-20">
+        <div className="max-w-xl mx-auto">
+          <span className="inline-block mb-3 px-2 py-1 bg-savannah text-white text-[10px] font-bold tracking-widest uppercase">
+            Reservation
+          </span>
+          <h2 className="text-3xl md:text-4xl font-display italic mb-2">Book Your Stay</h2>
+          <p className="text-white/60 text-sm mb-8">
+            Fill in the details below and we'll continue the conversation on WhatsApp.
+          </p>
+          <BookingForm />
+        </div>
+      </section>
+
       {/* Menu */}
       <section id="menu" className="bg-sand-100 px-6 py-20 scroll-mt-20">
+
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-display italic mb-2">Dining</h2>
           <p className="text-earth-900/50 text-xs uppercase tracking-widest font-medium">
@@ -345,3 +362,149 @@ const TOURS = [
     alt: "Guided sundowner bush walk",
   },
 ];
+
+function BookingForm() {
+  const [name, setName] = useState("");
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const [guests, setGuests] = useState(2);
+  const [room, setRoom] = useState("Savannah Suite");
+  const [notes, setNotes] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const trimmedName = name.trim().slice(0, 80);
+    if (!trimmedName) return setError("Please enter your full name.");
+    if (!checkIn || !checkOut) return setError("Please choose your check-in and check-out dates.");
+    if (new Date(checkOut) <= new Date(checkIn))
+      return setError("Check-out must be after check-in.");
+    if (guests < 1 || guests > 12) return setError("Number of guests must be between 1 and 12.");
+    setError(null);
+
+    const msg = [
+      "Hello Kizazi Safari Lodge, I would like to make a booking:",
+      `• Name: ${trimmedName}`,
+      `• Room: ${room}`,
+      `• Check-in: ${checkIn}`,
+      `• Check-out: ${checkOut}`,
+      `• Guests: ${guests}`,
+      notes.trim() ? `• Notes: ${notes.trim().slice(0, 400)}` : null,
+      "",
+      "Please confirm availability. Asante!",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.open(wa(msg), "_blank", "noopener,noreferrer");
+  };
+
+  const field =
+    "w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-sm text-white placeholder-white/30 focus:outline-none focus:border-savannah";
+  const label = "block text-[10px] font-bold uppercase tracking-widest text-white/60 mb-2";
+
+  return (
+    <form onSubmit={onSubmit} className="space-y-5">
+      <div>
+        <label htmlFor="bf-name" className={label}>Full Name</label>
+        <input
+          id="bf-name"
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={80}
+          required
+          autoComplete="name"
+          placeholder="Jane Doe"
+          className={field}
+        />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="bf-in" className={label}>Check-in</label>
+          <input
+            id="bf-in"
+            type="date"
+            value={checkIn}
+            min={new Date().toISOString().split("T")[0]}
+            onChange={(e) => setCheckIn(e.target.value)}
+            required
+            className={field}
+          />
+        </div>
+        <div>
+          <label htmlFor="bf-out" className={label}>Check-out</label>
+          <input
+            id="bf-out"
+            type="date"
+            value={checkOut}
+            min={checkIn || new Date().toISOString().split("T")[0]}
+            onChange={(e) => setCheckOut(e.target.value)}
+            required
+            className={field}
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="bf-guests" className={label}>Guests</label>
+          <input
+            id="bf-guests"
+            type="number"
+            min={1}
+            max={12}
+            value={guests}
+            onChange={(e) => setGuests(Number(e.target.value))}
+            required
+            className={field}
+          />
+        </div>
+        <div>
+          <label htmlFor="bf-room" className={label}>Room</label>
+          <select
+            id="bf-room"
+            value={room}
+            onChange={(e) => setRoom(e.target.value)}
+            className={field}
+          >
+            <option className="text-earth-900">Savannah Suite</option>
+            <option className="text-earth-900">Acacia Family Villa</option>
+            <option className="text-earth-900">No preference</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="bf-notes" className={label}>Notes (optional)</label>
+        <textarea
+          id="bf-notes"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          maxLength={400}
+          rows={3}
+          placeholder="Dietary requirements, airport transfers, special occasions…"
+          className={field}
+        />
+      </div>
+
+      {error && (
+        <p className="text-sm text-savannah" role="alert">
+          {error}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        className="w-full bg-savannah hover:bg-savannah-dark text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest transition-colors active:scale-[0.99]"
+      >
+        Send Booking via WhatsApp
+      </button>
+      <p className="text-[10px] text-white/40 text-center">
+        Opens WhatsApp with your details pre-filled — no payment online.
+      </p>
+    </form>
+  );
+}
+
