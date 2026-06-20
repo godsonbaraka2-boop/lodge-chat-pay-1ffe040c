@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { usePiAuth } from "@/lib/use-pi-auth";
 import heroImg from "@/assets/hero.jpg";
 import roomSavannah from "@/assets/room-savannah.jpg";
 import roomAcacia from "@/assets/room-acacia.jpg";
