@@ -6,6 +6,10 @@ import roomAcacia from "@/assets/room-acacia.jpg";
 import tourDrive from "@/assets/tour-drive.jpg";
 import tourBalloon from "@/assets/tour-balloon.jpg";
 import foodMshikaki from "@/assets/food-mshikaki.jpg";
+import facilitySpa from "@/assets/facility-spa.jpg";
+import facilityPool from "@/assets/facility-pool.jpg";
+import facilityDeck from "@/assets/facility-deck.jpg";
+import facilityBoma from "@/assets/facility-boma.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
