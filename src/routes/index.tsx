@@ -52,6 +52,7 @@ function Index() {
         </div>
         <nav className="hidden md:flex gap-7 text-xs font-medium uppercase tracking-widest">
           <a href="#rooms" className="hover:text-savannah transition-colors">Rooms</a>
+          <a href="#facilities" className="hover:text-savannah transition-colors">Facilities</a>
           <a href="#book" className="hover:text-savannah transition-colors">Book</a>
           <a href="#menu" className="hover:text-savannah transition-colors">Dining</a>
           <a href="#tours" className="hover:text-savannah transition-colors">Safaris</a>
