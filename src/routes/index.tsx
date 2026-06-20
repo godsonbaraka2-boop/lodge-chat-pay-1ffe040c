@@ -410,6 +410,33 @@ const TOURS = [
   },
 ];
 
+const FACILITIES = [
+  {
+    name: "Bush Spa & Wellness",
+    desc: "Open-air massages, herbal treatments and a calm deck overlooking the wild.",
+    img: facilitySpa,
+    alt: "Open-air safari lodge spa deck with savannah views",
+  },
+  {
+    name: "Infinity Pool",
+    desc: "Cool off in a pool that seems to merge into the endless Serengeti plains.",
+    img: facilityPool,
+    alt: "Infinity pool overlooking the Serengeti at sunset",
+  },
+  {
+    name: "Sundowner Deck",
+    desc: "An elevated timber deck to watch herds, sunsets and the big cats after dusk.",
+    img: facilityDeck,
+    alt: "Elevated safari lodge deck overlooking the savannah",
+  },
+  {
+    name: "Maasai Cultural Boma",
+    desc: "Experience Maasai song, beadwork and stories around a traditional fire circle.",
+    img: facilityBoma,
+    alt: "Traditional Maasai cultural boma at the lodge",
+  },
+];
+
 function BookingForm() {
   const [name, setName] = useState("");
   const [checkIn, setCheckIn] = useState("");
