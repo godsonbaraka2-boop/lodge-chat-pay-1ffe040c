@@ -126,8 +126,23 @@ function Index() {
         </div>
       </section>
 
+      {/* Booking Form */}
+      <section id="book" className="px-6 py-20 bg-earth-900 text-white scroll-mt-20">
+        <div className="max-w-xl mx-auto">
+          <span className="inline-block mb-3 px-2 py-1 bg-savannah text-white text-[10px] font-bold tracking-widest uppercase">
+            Reservation
+          </span>
+          <h2 className="text-3xl md:text-4xl font-display italic mb-2">Book Your Stay</h2>
+          <p className="text-white/60 text-sm mb-8">
+            Fill in the details below and we'll continue the conversation on WhatsApp.
+          </p>
+          <BookingForm />
+        </div>
+      </section>
+
       {/* Menu */}
       <section id="menu" className="bg-sand-100 px-6 py-20 scroll-mt-20">
+
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-display italic mb-2">Dining</h2>
           <p className="text-earth-900/50 text-xs uppercase tracking-widest font-medium">
