@@ -1,25 +1,38 @@
-// Shared Pi SDK loader/initializer. Keeps a single Pi.init() promise.
+// Shared Pi SDK loader/initializer + global types.
 
-type PiAuthResult = {
+export type PiAuthResult = {
   accessToken: string;
   user: { uid: string; username: string };
 };
 
+export type PiPaymentCallbacks = {
+  onReadyForServerApproval: (paymentId: string) => void;
+  onReadyForServerCompletion: (paymentId: string, txid: string) => void;
+  onCancel: (paymentId: string) => void;
+  onError: (error: Error, payment?: unknown) => void;
+};
+
+export type PiSdk = {
+  init: (opts: { version: string; sandbox?: boolean }) => Promise<void> | void;
+  authenticate: (
+    scopes: string[],
+    onIncompletePaymentFound: (payment: unknown) => void,
+  ) => Promise<PiAuthResult>;
+  createPayment?: (
+    payment: { amount: number; memo: string; metadata: Record<string, unknown> },
+    callbacks: PiPaymentCallbacks,
+  ) => void;
+};
+
 declare global {
   interface Window {
-    Pi?: {
-      init: (opts: { version: string; sandbox?: boolean }) => Promise<void> | void;
-      authenticate: (
-        scopes: string[],
-        onIncompletePaymentFound: (payment: unknown) => void,
-      ) => Promise<PiAuthResult>;
-    };
+    Pi?: PiSdk;
   }
 }
 
 const SDK_SRC = "https://sdk.minepi.com/pi-sdk.js";
 
-function loadPiSdk(): Promise<NonNullable<Window["Pi"]>> {
+function loadPiSdk(): Promise<PiSdk> {
   if (typeof window === "undefined") {
     return Promise.reject(new Error("Pi SDK requires a browser"));
   }
@@ -51,8 +64,8 @@ function loadPiSdk(): Promise<NonNullable<Window["Pi"]>> {
   });
 }
 
-let initPromise: Promise<NonNullable<Window["Pi"]>> | null = null;
-export function ensurePiReady(): Promise<NonNullable<Window["Pi"]>> {
+let initPromise: Promise<PiSdk> | null = null;
+export function ensurePiReady(): Promise<PiSdk> {
   if (!initPromise) {
     initPromise = loadPiSdk().then(async (Pi) => {
       await Promise.resolve(Pi.init({ version: "2.0" }));

@@ -14,22 +14,6 @@ export type PiPaymentResult = {
   txid: string;
 };
 
-declare global {
-  interface Window {
-    Pi?: Window["Pi"] & {
-      createPayment?: (
-        payment: { amount: number; memo: string; metadata: Record<string, unknown> },
-        callbacks: {
-          onReadyForServerApproval: (paymentId: string) => void;
-          onReadyForServerCompletion: (paymentId: string, txid: string) => void;
-          onCancel: (paymentId: string) => void;
-          onError: (error: Error, payment?: unknown) => void;
-        },
-      ) => void;
-    };
-  }
-}
-
 export function usePiPayment() {
   const approve = useServerFn(approvePiPayment);
   const complete = useServerFn(completePiPayment);
@@ -45,7 +29,9 @@ export function usePiPayment() {
         ensurePiReady()
           .then((Pi) => {
             if (!Pi.createPayment) {
-              throw new Error("Pi.createPayment unavailable. Open this app inside the Pi Browser.");
+              throw new Error(
+                "Pi.createPayment unavailable. Open this app inside the Pi Browser.",
+              );
             }
             Pi.createPayment(
               {
