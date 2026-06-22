@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import heroImg from "@/assets/hero.jpg";
 
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
