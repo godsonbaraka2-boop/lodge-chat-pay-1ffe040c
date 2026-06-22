@@ -347,8 +347,35 @@ function Index() {
         </div>
       </section>
 
+      {/* Need Help */}
+      <section id="help" className="bg-sand-100 px-6 py-16 scroll-mt-20">
+        <div className="max-w-2xl mx-auto bg-white rounded-3xl border border-earth-900/5 p-8 text-center">
+          <h3 className="text-2xl font-display italic mb-2">Need Help?</h3>
+          <p className="text-earth-900/60 text-sm mb-6">
+            For support or payment issues, contact us directly.
+          </p>
+          <div className="space-y-2 text-sm">
+            <p>
+              <span className="text-savannah font-mono mr-2">E:</span>
+              <a href="mailto:godsonbaraka2@gmail.com" className="underline hover:text-savannah">
+                godsonbaraka2@gmail.com
+              </a>
+            </p>
+            <p>
+              <span className="text-savannah font-mono mr-2">P/WA:</span>
+              <a href="tel:+255654617865" className="underline hover:text-savannah">
+                +255 654 617 865
+              </a>
+            </p>
+            <p className="text-earth-900/60 text-xs mt-4">
+              Location: Northern Corridor, Arusha, Tanzania
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Contact / Footer */}
-      <footer id="contact" className="bg-earth-900 text-white px-6 pt-20 pb-32 scroll-mt-20">
+      <footer id="contact" className="bg-earth-900 text-white px-6 pt-20 pb-20 scroll-mt-20">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-display italic mb-6">Get in Touch</h2>
           <div className="space-y-4 text-white/70 text-sm mb-12">
@@ -370,7 +397,7 @@ function Index() {
               </a>
             </p>
             <p className="flex items-center gap-3">
-              <span className="text-savannah font-mono">A:</span> Serengeti National Park, Tanzania
+              <span className="text-savannah font-mono">A:</span> Northern Corridor, Arusha, Tanzania
             </p>
           </div>
           <div className="aspect-video bg-white/5 rounded-2xl grid place-items-center border border-white/10 mb-12 overflow-hidden">
@@ -385,6 +412,7 @@ function Index() {
             © {new Date().getFullYear()} Kizazi Safari Lodge · Tanzania
           </p>
         </div>
+      </footer>
     </div>
   );
 }
