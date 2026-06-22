@@ -233,7 +233,7 @@ function Index() {
           </span>
           <h2 className="text-3xl md:text-4xl font-display italic mb-2">Book Your Stay</h2>
           <p className="text-white/60 text-sm mb-8">
-            Fill in the details below and we'll continue the conversation on WhatsApp. Payment is accepted in Pi.
+            Pay securely with Pi. Your booking confirmation and code will be sent to your phone/email.
           </p>
           <BookingForm />
         </div>
