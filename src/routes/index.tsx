@@ -733,8 +733,8 @@ function BookingForm() {
             min={today}
             onChange={(e) => setCheckIn(e.target.value)}
             required
-            aria-label="Chagua tarehe ya kuingia"
-            placeholder="Chagua tarehe ya kuingia"
+            aria-label="Select check-in date"
+            placeholder="Select check-in date"
             className={field}
           />
         </div>
@@ -747,10 +747,11 @@ function BookingForm() {
             min={checkIn || today}
             onChange={(e) => setCheckOut(e.target.value)}
             required
-            aria-label="Chagua tarehe ya kutoka"
-            placeholder="Chagua tarehe ya kutoka"
+            aria-label="Select check-out date"
+            placeholder="Select check-out date"
             className={field}
           />
+
         </div>
       </div>
 
