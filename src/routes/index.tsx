@@ -374,6 +374,73 @@ function Index() {
         </div>
       </section>
 
+      {/* Pi Integration Status */}
+      <section id="pi-status" className="bg-white px-6 py-16 scroll-mt-20">
+        <div className="max-w-2xl mx-auto rounded-3xl border border-earth-900/10 p-8">
+          <div className="flex items-center gap-2 mb-2">
+            <span className="inline-block w-2 h-2 rounded-full bg-emerald-500" />
+            <span className="text-xs uppercase tracking-widest text-earth-900/60">Pi Integration Status</span>
+          </div>
+          <h3 className="text-2xl font-display italic mb-6">
+            Configured for Pi Developer Portal
+          </h3>
+          <p className="text-sm text-earth-900/60 mb-6">
+            These are the official URLs registered for this app in the Pi Developer Portal.
+          </p>
+          <dl className="space-y-4 text-sm">
+            <div>
+              <dt className="text-earth-900/50 uppercase text-xs tracking-widest mb-1">Production URL</dt>
+              <dd className="break-all">
+                <a
+                  href="https://lodge-chat-pay.lovable.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-savannah"
+                >
+                  https://lodge-chat-pay.lovable.app
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-earth-900/50 uppercase text-xs tracking-widest mb-1">Repository</dt>
+              <dd className="break-all">
+                <a
+                  href="https://github.com/godsonbaraka2-boop/lodge-chat-pay"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-savannah"
+                >
+                  github.com/godsonbaraka2-boop/lodge-chat-pay
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-earth-900/50 uppercase text-xs tracking-widest mb-1">Privacy Policy</dt>
+              <dd className="break-all">
+                <Link to="/privacy-policy" className="underline hover:text-savannah">
+                  /privacy-policy
+                </Link>
+              </dd>
+            </div>
+            <div>
+              <dt className="text-earth-900/50 uppercase text-xs tracking-widest mb-1">Developer Contact</dt>
+              <dd>
+                <a href="mailto:godsonbaraka2@gmail.com" className="underline hover:text-savannah">
+                  godsonbaraka2@gmail.com
+                </a>
+                {" · "}
+                <a href="tel:+255654617865" className="underline hover:text-savannah">
+                  +255 654 617 865
+                </a>
+              </dd>
+            </div>
+          </dl>
+          <p className="text-xs text-earth-900/50 mt-6">
+            Payments are processed via the Pi SDK. API keys are stored securely server-side.
+          </p>
+        </div>
+      </section>
+
       {/* Contact / Footer */}
       <footer id="contact" className="bg-earth-900 text-white px-6 pt-20 pb-20 scroll-mt-20">
         <div className="max-w-3xl mx-auto">
