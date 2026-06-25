@@ -91,10 +91,13 @@ function Index() {
           {piUser ? (
             <button
               onClick={piSignOut}
-              className="text-[10px] font-medium uppercase tracking-widest text-savannah border border-savannah/40 rounded-full px-3 py-1.5 hover:bg-savannah/10 transition-colors"
-              title={`Signed in as @${piUser.username}`}
+              title={`Signed in as @${piUser.username} — click to sign out`}
+              className="flex items-center gap-2 text-[11px] font-semibold text-savannah hover:opacity-80 transition-opacity"
             >
-              π @{piUser.username}
+              <span className="w-7 h-7 rounded-full bg-savannah text-sand-50 flex items-center justify-center text-[11px] font-bold uppercase">
+                {piUser.username.slice(0, 2)}
+              </span>
+              <span className="hidden sm:inline">@{piUser.username}</span>
             </button>
           ) : (
             <button
