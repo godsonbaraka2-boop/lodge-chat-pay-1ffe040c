@@ -850,7 +850,7 @@ function BookingForm() {
           {paying ? "Processing payment…" : `PAY WITH PI — ${PI_PER_NIGHT} π`}
         </button>
         <p className="mt-2 text-[11px] text-white/50 text-center">
-          Kwa usiku 1 - {room}. Jumla itaonyeshwa baada ya kuchagua tarehe.
+          Per night - {room}. Total will be shown after selecting your dates.
         </p>
       </div>
     </form>
