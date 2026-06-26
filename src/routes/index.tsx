@@ -685,9 +685,18 @@ function BookingForm() {
   const label = "block text-[10px] font-bold uppercase tracking-widest text-white/60 mb-2";
 
   if (confirmation) {
-    const waMsg = encodeURIComponent(
-      `NEW BOOKING — KIZAZI LODGE\n\nCode: ${confirmation}\nName: ${name}\nPhone: +255${phone}\nRoom: ${room}\nCheck-in: ${checkIn}\nCheck-out: ${checkOut}\nNights: ${nights}\nGuests: ${guests}\nTotal: ${total} π\n\nPayment completed via Pi.`
-    );
+    const waMsg =
+      `*NEW BOOKING — KIZAZI SAFARI LODGE*\n\n` +
+      `Confirmation Code: ${confirmation}\n` +
+      `Guest Name: ${name}\n` +
+      `Phone: +255${phone}\n` +
+      `Room: ${room}\n` +
+      `Check-in: ${checkIn}\n` +
+      `Check-out: ${checkOut}\n` +
+      `Nights: ${nights}\n` +
+      `Guests: ${guests}\n` +
+      `Total Paid: ${total} π\n\n` +
+      `Payment completed via Pi Network. Please confirm my reservation.`;
     return (
       <div className="bg-white/5 border border-white/15 rounded-2xl p-8 text-center space-y-4">
         <div className="text-4xl">🎉</div>
@@ -700,7 +709,7 @@ function BookingForm() {
           Keep this code safe. We'll be in touch on +255{phone.replace(/\D/g, "")} shortly.
         </p>
         <a
-          href={`https://wa.me/255654617865?text=${waMsg}`}
+          href={wa(waMsg)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block w-full bg-[#25D366] hover:bg-[#1ebe57] text-white py-4 rounded-xl font-bold uppercase text-xs tracking-widest transition-colors"
